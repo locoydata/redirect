@@ -31,7 +31,7 @@
             if (window.self === window.top) { // 仅尝试关闭顶级窗口
                 window.close();
             }
-        }, 3000); // 延迟 3 秒钟后尝试关闭
+        }, 1000); // 延迟 3 秒钟后尝试关闭
     } else {
         // 如果没有查询字符串，可以重定向到默认 URL
         window.location.href = "https://www.example.com/default";
