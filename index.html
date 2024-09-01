@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Redirecting</title>
-  </head>
-  <body>
-  Redirecting...
-  </body>
-  <script>
-  if (window.location.search == ""){
-    window.location.href = "https://github.com/locoydata/redirect/";
-  } else {
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <p>Redirecting to your application...</p>
+    <p>If the page does not close automatically, you can <a href="javascript:window.close()">click here to close this page</a>.</p>
+</body>
+<script>
+    // 获取当前页面的查询字符串（包括问号 ?）
     const queryString = window.location.search;
-    window.location.href = queryString.split("://")[0].substr(1) + "://" + queryString.split("://")[1];
-    window.close();
-  };
-  </script>
+
+    if (queryString) {
+        // 从查询字符串中去掉开头的问号 ?
+        const redirectUrl = queryString.substring(1); // 去掉问号
+
+        // 进行重定向
+        window.location.href = redirectUrl;
+
+        // 设置延迟自动关闭
+        setTimeout(() => {
+            if (window.self === window.top) { // 仅尝试关闭顶级窗口
+                window.close();
+            }
+        }, 3000); // 延迟 3 秒钟后尝试关闭
+    } else {
+        // 如果没有查询字符串，可以重定向到默认 URL
+        window.location.href = "https://www.example.com/default";
+    }
+</script>
 </html>
